@@ -23,7 +23,7 @@ pipeline {
             steps {
                 bat 'docker stop hostel-test || true'
                 bat 'docker rm hostel-test || true'
-                bat 'docker run -d --name hostel-test -p 8080:8080 hostel-management'
+                bat 'docker run -d --name hostel-test -p 8085:8080 hostel-management'
             }
         }
     }
