@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hostel-management
+  labels:
+    app: hostel-management
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hostel-management
+  template:
+    metadata:
+      labels:
+        app: hostel-management
+    spec:
+      containers:
+      - name: hostel-app
+        image: trisha937/hostel-management:v1
+        ports:
+        - containerPort: 8081

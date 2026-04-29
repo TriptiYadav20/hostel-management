@@ -1,0 +1,23 @@
+---
+- name: Deploy Hostel Management to Kubernetes
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Pull latest Docker image
+      command: docker pull trisha937/hostel-management:v1
+    
+    - name: Apply Kubernetes deployment
+      command: kubectl apply -f deployment.yaml
+    
+    - name: Apply Kubernetes service
+      command: kubectl apply -f service.yaml
+    
+    - name: Wait for pods to be ready
+      command: kubectl wait --for=condition=ready pod -l app=hostel-management --timeout=60s
+    
+    - name: Show running pods
+      command: kubectl get pods
+      register: pods
+    
+    - debug:
+        var: pods.stdout_lines
